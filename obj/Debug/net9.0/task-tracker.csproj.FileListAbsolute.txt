@@ -1,0 +1,14 @@
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/bin/Debug/net9.0/task-tracker
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/bin/Debug/net9.0/task-tracker.deps.json
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/bin/Debug/net9.0/task-tracker.runtimeconfig.json
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/bin/Debug/net9.0/task-tracker.dll
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/bin/Debug/net9.0/task-tracker.pdb
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.GeneratedMSBuildEditorConfig.editorconfig
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.AssemblyInfoInputs.cache
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.AssemblyInfo.cs
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.csproj.CoreCompileInputs.cache
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.dll
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/refint/task-tracker.dll
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.pdb
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.genruntimeconfig.cache
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/ref/task-tracker.dll
