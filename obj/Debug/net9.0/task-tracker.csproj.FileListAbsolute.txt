@@ -12,3 +12,4 @@
 /Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.pdb
 /Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.genruntimeconfig.cache
 /Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/ref/task-tracker.dll
+/Users/marquessmalley/Documents/developement/c#/consoleApp/task-tracker/obj/Debug/net9.0/task-tracker.sourcelink.json
