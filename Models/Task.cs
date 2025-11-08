@@ -1,9 +1,7 @@
-using System;
-
-namespace TaskTrakcerSystem.Model
+namespace TaskTrackerSystem.Model
 
 {
-    public enum TaskStatus
+    public enum TodoStatus
     {
 
         Todo,
@@ -12,14 +10,19 @@ namespace TaskTrakcerSystem.Model
     }
 
 
-    public class Task
+    public class Todo(Guid id, string description, TodoStatus status, DateTime createdAt, DateTime updatedAAt)
     {
-        public int id;
-        public string? description;
-        public TaskStatus taskStatus;
-        public DateTime createdAt;
-        public DateTime updatedAt;
+        public Guid Id = id;
+        public string? Description = description;
+        public TodoStatus Status = status;
+        public DateTime CreatedAt = createdAt;
+        public DateTime UpdatedAt = updatedAAt;
 
-
+        public override string ToString()
+        {
+            return $"Id: {Id}, Description: {Description}, Status: {Status}, createdAt: {CreatedAt}";
+        }
     }
+
+
 }
