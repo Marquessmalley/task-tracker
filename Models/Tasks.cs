@@ -13,9 +13,9 @@ namespace TaskTrackerSystem.Model
                 return;
             }
 
-            IEnumerable<Todo> list = tasks;
 
-            foreach (var item in list)
+
+            foreach (var item in tasks)
             {
                 Console.WriteLine(item);
             }

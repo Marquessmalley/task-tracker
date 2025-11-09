@@ -26,7 +26,7 @@ namespace TaskTrackerSystem
                 else if (userInput != null && userInput.StartsWith("add", StringComparison.OrdinalIgnoreCase))
                 {
                     // GET THE TODO FROM THE USER INPUT
-                    string description = userInput.Split("add ")[1];
+                    string description = userInput.Split("add")[1];
 
                     // CREATE A NEW TASK
                     Todo newTask = new(Guid.NewGuid(), description, TodoStatus.Todo, DateTime.Now, DateTime.Now);
@@ -34,6 +34,12 @@ namespace TaskTrackerSystem
 
                     // ADD IT TO THE TASKS LIST
                     tasks.AddTask(newTask);
+                    userInput = Console.ReadLine();
+                }
+                else if (userInput != null && userInput.Equals("list", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Listing all tasks...");
+                    tasks.ListTasks();
                     userInput = Console.ReadLine();
                 }
                 else
