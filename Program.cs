@@ -1,4 +1,5 @@
 ﻿using TaskTrackerSystem.Model;
+using TaskTrackerSystem.Utilities;
 
 namespace TaskTrackerSystem
 {
@@ -18,25 +19,41 @@ namespace TaskTrackerSystem
             {
 
 
-                if (userInput == "exit")
+                if (userInput?.ToLower() == "exit")
                 {
                     Console.WriteLine("Exiting system...");
                     System.Environment.Exit(0);
                 }
-                else if (userInput != null && userInput.StartsWith("add", StringComparison.OrdinalIgnoreCase))
+
+                // ADDING TASK
+                else if (userInput != null && InputValidator.ValidateAddCommand(userInput))
                 {
                     // GET THE TODO FROM THE USER INPUT
-                    string description = userInput.Split("add")[1];
+                    string description = userInput.Trim()[3..].Trim();
 
                     // CREATE A NEW TASK
                     Todo newTask = new(Guid.NewGuid(), description, TodoStatus.Todo, DateTime.Now, DateTime.Now);
-                    Console.WriteLine(newTask.ToString());
 
                     // ADD IT TO THE TASKS LIST
                     tasks.AddTask(newTask);
                     userInput = Console.ReadLine();
                 }
-                else if (userInput != null && userInput.Equals("list", StringComparison.OrdinalIgnoreCase))
+                // UPDATING TASK
+                else if (userInput != null && InputValidator.ValidateUpdateCommand(userInput))
+                {
+
+                    // ID
+                    string id = userInput.Split(" ")[1];
+
+                    // GET THE TODO FROM THE USER INPUT
+                    var parts = userInput.Split(" ", 3, StringSplitOptions.RemoveEmptyEntries);
+
+                    // START HERE
+
+
+                    userInput = Console.ReadLine();
+                }
+                else if (userInput != null && InputValidator.ValidateListCommand(userInput))
                 {
                     Console.WriteLine("Listing all tasks...");
                     tasks.ListTasks();
