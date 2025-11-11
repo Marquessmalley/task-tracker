@@ -48,9 +48,20 @@ namespace TaskTrackerSystem
                     // GET THE TODO FROM THE USER INPUT
                     var parts = userInput.Split(" ", 3, StringSplitOptions.RemoveEmptyEntries);
 
+                    tasks.UpdateTask(id, parts[2]);
+
                     // START HERE
+                    userInput = Console.ReadLine();
+                }
+                // DELETING TASK
+                else if (userInput != null && InputValidator.ValidateDeleteCommand(userInput))
+                {
 
+                    string id = userInput.Split(" ")[1];
 
+                    tasks.DeleteTask(id);
+
+                    // START HERE
                     userInput = Console.ReadLine();
                 }
                 else if (userInput != null && InputValidator.ValidateListCommand(userInput))
