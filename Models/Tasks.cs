@@ -65,6 +65,21 @@ namespace TaskTrackerSystem.Model
 
 
         }
+        public void MarkTaskStatus(string taskId)
+        {
+
+
+            // Todo? task = tasks.Find((task) => task.Id == Guid.Parse(taskId));
+            // if (task == null)
+            // {
+            //     Console.WriteLine("Task not found.");
+            //     return;
+            // }
+
+            // tasks.Remove(task);
+
+
+        }
 
     }
 }

@@ -18,6 +18,10 @@ namespace TaskTrackerSystem.Utilities
         {
             return userInput.Equals("list", StringComparison.OrdinalIgnoreCase);
         }
+        public static bool ValidateMarkStatusCommand(string userInput)
+        {
+            return userInput.Trim().StartsWith("mark", StringComparison.OrdinalIgnoreCase) && userInput.Trim()[0..4] == "mark" && userInput.Split(" ")[0] == "mark" && userInput.Split(" ", 2, StringSplitOptions.RemoveEmptyEntries).Length == 2;
+        }
     }
 
 }

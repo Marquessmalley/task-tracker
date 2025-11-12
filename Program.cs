@@ -39,12 +39,17 @@ namespace TaskTrackerSystem
 
                     userInput = Console.ReadLine();
                 }
-                // DELETING TASK
+
                 else if (userInput != null && InputValidator.ValidateDeleteCommand(userInput))
                 {
 
                     CommandHandler.HandleDelete(userInput, tasks);
-                    // START HERE
+                    userInput = Console.ReadLine();
+                }
+                //  MARK TASK STATUS
+                else if (userInput != null && InputValidator.ValidateDeleteCommand(userInput))
+                {
+
                     userInput = Console.ReadLine();
                 }
                 else if (userInput != null && InputValidator.ValidateListCommand(userInput))
