@@ -1,0 +1,49 @@
+using System;
+namespace TaskTrackerSystem.Model
+{
+    public static class CommandHandler
+    {
+
+        public static void HandleExit()
+        {
+            Console.WriteLine("Exiting system...");
+            System.Environment.Exit(0);
+
+        }
+        public static void HandleAdd(string userInput, Tasks tasks)
+        {
+            // GET THE TODO FROM THE USER INPUT
+            string description = userInput.Trim()[3..].Trim();
+
+            // CREATE A NEW TASK
+            Todo newTask = new(Guid.NewGuid(), description, TodoStatus.Todo, DateTime.Now, DateTime.Now);
+
+            // ADD IT TO THE TASKS LIST
+            tasks.AddTask(newTask);
+
+        }
+
+        public static void HandleUpdate(string userInput, Tasks tasks)
+        {
+            string id = userInput.Split(" ")[1];
+
+            // GET THE TODO FROM THE USER INPUT
+            var parts = userInput.Split(" ", 3, StringSplitOptions.RemoveEmptyEntries);
+            tasks.UpdateTask(id, parts[2]);
+        }
+
+        public static void HandleDelete(string userInput, Tasks tasks)
+        {
+            string id = userInput.Split(" ")[1];
+
+            tasks.DeleteTask(id);
+
+        }
+        public static void HandleList(Tasks tasks)
+        {
+            Console.WriteLine("Listing all tasks...");
+            tasks.ListTasks();
+        }
+
+    }
+}

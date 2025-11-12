@@ -30,8 +30,16 @@ namespace TaskTrackerSystem.Model
         public void UpdateTask(string taskId, string newDescription)
         {
 
+            if (!Guid.TryParse(taskId, out Guid result))
+            {
+                Console.WriteLine("Invalid task ID format.");
+                return;
+            }
 
-            Todo? task = tasks.Find((task) => task.Id == Guid.Parse(taskId));
+
+            Console.WriteLine($"The result: {result}");
+
+            Todo? task = tasks.Find((task) => task.Id == result);
             if (task == null)
             {
                 Console.WriteLine("Task not found.");
@@ -39,6 +47,7 @@ namespace TaskTrackerSystem.Model
             }
 
             task.Description = newDescription;
+            task.UpdatedAt = DateTime.Now;
 
         }
         public void DeleteTask(string taskId)
