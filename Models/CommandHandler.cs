@@ -1,4 +1,5 @@
 using System;
+using TaskTrackerSystem.Utilities;
 namespace TaskTrackerSystem.Model
 {
     public static class CommandHandler
@@ -43,6 +44,22 @@ namespace TaskTrackerSystem.Model
         {
             Console.WriteLine("Listing all tasks...");
             tasks.ListTasks();
+        }
+
+        public static void MarkTaskStatus(string userInput, Tasks tasks)
+        {
+            string id = userInput.Split(" ")[1];
+            string status = userInput.Split("-", 2, StringSplitOptions.RemoveEmptyEntries)[1].Split(" ")[0];
+
+            if (!InputValidator.ValidateTaskStatusCommand(status))
+            {
+                Console.WriteLine("Uknown Input. Please try again!");
+                return;
+
+            }
+
+            tasks.MarkTaskStatus(id, status);
+
         }
 
     }

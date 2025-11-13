@@ -37,7 +37,6 @@ namespace TaskTrackerSystem.Model
             }
 
 
-            Console.WriteLine($"The result: {result}");
 
             Todo? task = tasks.Find((task) => task.Id == result);
             if (task == null)
@@ -65,18 +64,25 @@ namespace TaskTrackerSystem.Model
 
 
         }
-        public void MarkTaskStatus(string taskId)
+        public void MarkTaskStatus(string taskId, string status)
         {
 
 
-            // Todo? task = tasks.Find((task) => task.Id == Guid.Parse(taskId));
-            // if (task == null)
-            // {
-            //     Console.WriteLine("Task not found.");
-            //     return;
-            // }
+            Todo? task = tasks.Find((task) => task.Id == Guid.Parse(taskId));
+            if (task == null)
+            {
+                Console.WriteLine("Task not found.");
+                return;
+            }
 
-            // tasks.Remove(task);
+            if (status == "done")
+            {
+                task.Status = TodoStatus.Done;
+            }
+            else if (status == "in-progress")
+            {
+                task.Status = TodoStatus.InProgress;
+            }
 
 
         }

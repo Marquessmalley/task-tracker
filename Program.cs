@@ -47,9 +47,10 @@ namespace TaskTrackerSystem
                     userInput = Console.ReadLine();
                 }
                 //  MARK TASK STATUS
-                else if (userInput != null && InputValidator.ValidateDeleteCommand(userInput))
+                else if (userInput != null && InputValidator.ValidateMarkStatusCommand(userInput))
                 {
 
+                    CommandHandler.MarkTaskStatus(userInput, tasks);
                     userInput = Console.ReadLine();
                 }
                 else if (userInput != null && InputValidator.ValidateListCommand(userInput))
