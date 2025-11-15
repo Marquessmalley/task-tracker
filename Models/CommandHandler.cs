@@ -61,6 +61,21 @@ namespace TaskTrackerSystem.Model
             tasks.MarkTaskStatus(id, status);
 
         }
+        public static void ListTasksByStatus(string userInput, Tasks tasks)
+        {
+            string status = userInput.Split(" ", 2, StringSplitOptions.RemoveEmptyEntries)[1];
+
+
+            if (!InputValidator.ValidateListTasksByStatus(status))
+            {
+                Console.WriteLine("Uknown Input. Please try again!");
+                return;
+
+            }
+
+            tasks.ListTasksByStatus(status);
+
+        }
 
     }
 }

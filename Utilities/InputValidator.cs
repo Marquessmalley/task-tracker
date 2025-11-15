@@ -19,7 +19,7 @@ namespace TaskTrackerSystem.Utilities
         public static bool ValidateListCommand(string userInput)
         {
 
-            return userInput.Equals("list", StringComparison.OrdinalIgnoreCase);
+            return userInput.Trim().Equals("list", StringComparison.OrdinalIgnoreCase);
         }
         public static bool ValidateMarkStatusCommand(string userInput)
         {
@@ -28,6 +28,15 @@ namespace TaskTrackerSystem.Utilities
         public static bool ValidateTaskStatusCommand(string status)
         {
             return status == "done" || status == "in-progress";
+        }
+
+        public static bool ValidateListTasksByStatusCommand(string userInput)
+        {
+            return userInput.Trim().StartsWith("list", StringComparison.OrdinalIgnoreCase) && userInput.Trim()[0..4] == "list" && userInput.Split(" ")[0] == "list" && userInput.Split(" ", 2, StringSplitOptions.RemoveEmptyEntries).Length == 2;
+        }
+        public static bool ValidateListTasksByStatus(string status)
+        {
+            return status == "done" || status == "in-progress" || status == "todo";
         }
     }
 

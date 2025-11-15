@@ -22,6 +22,37 @@ namespace TaskTrackerSystem.Model
 
         }
 
+        public void ListTasksByStatus(string status)
+        {
+
+            if (tasks.Count == 0)
+            {
+                Console.WriteLine("Empty tasks list.");
+                return;
+            }
+
+            var normalized = status.Trim().Replace("-", "").Replace(" ", "");
+            if (!Enum.TryParse(normalized, ignoreCase: true, out TodoStatus result))
+            {
+                Console.WriteLine("Invalid status. Valid values: todo, in-progress, done");
+                return;
+            }
+
+
+            foreach (var task in tasks)
+            {
+                if (task.Status == result)
+                {
+                    Console.WriteLine(task);
+                }
+                else
+                {
+                    Console.WriteLine($"There are no tasks with the status: {result}");
+                }
+            }
+
+        }
+
         public void AddTask(Todo task)
         {
             tasks.Add(task);

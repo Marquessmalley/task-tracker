@@ -58,6 +58,12 @@ namespace TaskTrackerSystem
                     CommandHandler.HandleList(tasks);
                     userInput = Console.ReadLine();
                 }
+                else if (userInput != null && InputValidator.ValidateListTasksByStatusCommand(userInput))
+                {
+
+                    CommandHandler.ListTasksByStatus(userInput, tasks);
+                    userInput = Console.ReadLine();
+                }
                 else
                 {
                     Console.WriteLine("Uknown Input. Please try again!");
