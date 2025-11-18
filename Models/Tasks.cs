@@ -2,7 +2,7 @@ namespace TaskTrackerSystem.Model
 {
     public class Tasks
     {
-        public List<Todo> tasks = [];
+        public List<Todo> tasks { get; set; } = [];
 
         public void ListTasks()
         {

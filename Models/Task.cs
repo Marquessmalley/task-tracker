@@ -10,13 +10,15 @@ namespace TaskTrackerSystem.Model
     }
 
 
-    public class Todo(Guid id, string description, TodoStatus status, DateTime createdAt, DateTime updatedAAt)
+    public class Todo(Guid id, string description, TodoStatus status, DateTime createdAt, DateTime updatedAt)
     {
-        public Guid Id = id;
-        public string? Description = description;
-        public TodoStatus Status = status;
-        public DateTime CreatedAt = createdAt;
-        public DateTime UpdatedAt = updatedAAt;
+        public Guid Id { get; set; } = id;
+        public string? Description { get; set; } = description;
+        public TodoStatus Status { get; set; } = status;
+        public DateTime CreatedAt { get; set; } = createdAt;
+        public DateTime UpdatedAt { get; set; } = updatedAt;
+
+
 
         public override string ToString()
         {
