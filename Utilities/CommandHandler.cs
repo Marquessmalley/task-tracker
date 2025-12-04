@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using TaskTrackerSystem.Utilities;
 using TaskTrackerSystem.Model;
 using System.Text.Json;
+using TaskTrackerSystem.Service;
 
-namespace TaskTrackerSystem.Model
+namespace TaskTrackerSystem.Utilities
 {
     public static class CommandHandler
     {
@@ -15,7 +15,7 @@ namespace TaskTrackerSystem.Model
             System.Environment.Exit(0);
 
         }
-        public static void HandleAdd(string userInput, Tasks tasks, JsonSerializerOptions JsonOptions)
+        public static void HandleAdd(string userInput, TaskService taskService)
         {
             // GET THE TODO FROM THE USER INPUT
             string description = userInput.Trim()[3..].Trim();
@@ -24,48 +24,45 @@ namespace TaskTrackerSystem.Model
             Todo newTask = new(Guid.NewGuid(), description, TodoStatus.Todo, DateTime.Now, DateTime.Now);
 
             // ADD IT TO THE TASKS LIST
-            tasks.AddTask(newTask);
+            taskService.AddTask(newTask);
 
 
             // ADD TO A JSON FILE
-            var jsonString = JsonSerializer.Serialize(tasks, JsonOptions);
-
-            File.WriteAllText(Path.Combine("Data", "tasks.json"), jsonString);
+            taskService.SaveTasks();
 
         }
 
-        public static void HandleUpdate(string userInput, Tasks tasks, JsonSerializerOptions JsonOptions)
+        public static void HandleUpdate(string userInput, TaskService taskService)
         {
             string id = userInput.Split(" ")[1];
 
             // GET THE TODO FROM THE USER INPUT
             var parts = userInput.Split(" ", 3, StringSplitOptions.RemoveEmptyEntries);
-            tasks.UpdateTask(id, parts[2]);
+
+            // UPDATE TASK
+            taskService.UpdateTask(id, parts[2]);
 
             // UPDATE TO A JSON FILE
-            var jsonString = JsonSerializer.Serialize(tasks, JsonOptions);
-
-            File.WriteAllText(Path.Combine("Data", "tasks.json"), jsonString);
+            taskService.SaveTasks();
         }
 
-        public static void HandleDelete(string userInput, Tasks tasks, JsonSerializerOptions JsonOptions)
+        public static void HandleDelete(string userInput, TaskService taskService)
         {
             string id = userInput.Split(" ")[1];
 
-            tasks.DeleteTask(id);
-            // DELETE TO A JSON FILE
-            var jsonString = JsonSerializer.Serialize(tasks, JsonOptions);
+            taskService.DeleteTask(id);
 
-            File.WriteAllText(Path.Combine("Data", "tasks.json"), jsonString);
+            // DELETE TO A JSON FILE
+            taskService.SaveTasks();
 
         }
-        public static void HandleList(Tasks tasks)
+        public static void HandleList(TaskService taskService)
         {
             Console.WriteLine("Listing all tasks...");
-            tasks.ListTasks();
+            taskService.ListTasks();
         }
 
-        public static void MarkTaskStatus(string userInput, Tasks tasks, JsonSerializerOptions JsonOptions)
+        public static void MarkTaskStatus(string userInput, TaskService taskService)
         {
             string id = userInput.Split(" ")[1];
             string status = userInput.Split("-", 2, StringSplitOptions.RemoveEmptyEntries)[1].Split(" ")[0];
@@ -77,15 +74,13 @@ namespace TaskTrackerSystem.Model
 
             }
 
-            tasks.MarkTaskStatus(id, status);
+            taskService.MarkTaskStatus(id, status);
 
             // Mark TO A JSON FILE
-            var jsonString = JsonSerializer.Serialize(tasks, JsonOptions);
-
-            File.WriteAllText(Path.Combine("Data", "tasks.json"), jsonString);
+            taskService.SaveTasks();
 
         }
-        public static void ListTasksByStatus(string userInput, Tasks tasks)
+        public static void ListTasksByStatus(string userInput, TaskService taskService)
         {
             string status = userInput.Split(" ", 2, StringSplitOptions.RemoveEmptyEntries)[1];
 
@@ -97,7 +92,7 @@ namespace TaskTrackerSystem.Model
 
             }
 
-            tasks.ListTasksByStatus(status);
+            taskService.ListTasksByStatus(status);
 
         }
 

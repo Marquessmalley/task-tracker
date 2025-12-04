@@ -4,53 +4,19 @@ using System.IO;
 using System.Text.Json.Nodes;
 using System.Text.Json;
 using System.Runtime.CompilerServices;
+using TaskTrackerSystem.Service;
 
 namespace TaskTrackerSystem
 {
 
-    public class TaskTracer
+    public class TaskTracker
     {
-        private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
-
-        public static Tasks LoadTasksFromFile(JsonSerializerOptions options)
-        {
-            string folder = "Data";
-            string filePath = Path.Combine(folder, "tasks.json");
-
-            if (!File.Exists(filePath))
-            {
-                Directory.CreateDirectory("Data");
-                Console.WriteLine("No saved tasks");
-                return new Tasks();
-            }
-            try
-            {
-                string jsonString = File.ReadAllText(filePath);
-
-                Tasks? tasks = JsonSerializer.Deserialize<Tasks>(jsonString, JsonOptions);
-                if (tasks == null)
-                {
-                    Console.WriteLine("Loading tasks returned null");
-                    return new Tasks();
-                }
-                Console.WriteLine($"Loaded {tasks.tasks.Count} task(s) from file.");
-
-                return tasks;
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine($"Error loading tasks: {err.Message}");
-                return new Tasks();
-            }
-
-        }
 
         public static void Main(string[] args)
         {
 
             Console.WriteLine("Welome to the Task Tracker System!");
-            Tasks tasks = LoadTasksFromFile(JsonOptions);
-
+            var taskService = new TaskService();
 
             string? userInput = Console.ReadLine();
             do
@@ -65,7 +31,7 @@ namespace TaskTrackerSystem
                 else if (userInput != null && InputValidator.ValidateAddCommand(userInput))
                 {
 
-                    CommandHandler.HandleAdd(userInput, tasks, JsonOptions);
+                    CommandHandler.HandleAdd(userInput, taskService);
 
                     userInput = Console.ReadLine();
 
@@ -73,7 +39,7 @@ namespace TaskTrackerSystem
                 else if (userInput != null && InputValidator.ValidateUpdateCommand(userInput))
                 {
 
-                    CommandHandler.HandleUpdate(userInput, tasks, JsonOptions);
+                    CommandHandler.HandleUpdate(userInput, taskService);
 
                     userInput = Console.ReadLine();
                 }
@@ -81,25 +47,24 @@ namespace TaskTrackerSystem
                 else if (userInput != null && InputValidator.ValidateDeleteCommand(userInput))
                 {
 
-                    CommandHandler.HandleDelete(userInput, tasks, JsonOptions);
+                    CommandHandler.HandleDelete(userInput, taskService);
                     userInput = Console.ReadLine();
                 }
-                //  MARK TASK STATUS
                 else if (userInput != null && InputValidator.ValidateMarkStatusCommand(userInput))
                 {
 
-                    CommandHandler.MarkTaskStatus(userInput, tasks, JsonOptions);
+                    CommandHandler.MarkTaskStatus(userInput, taskService);
                     userInput = Console.ReadLine();
                 }
                 else if (userInput != null && InputValidator.ValidateListCommand(userInput))
                 {
-                    CommandHandler.HandleList(tasks);
+                    CommandHandler.HandleList(taskService);
                     userInput = Console.ReadLine();
                 }
                 else if (userInput != null && InputValidator.ValidateListTasksByStatusCommand(userInput))
                 {
 
-                    CommandHandler.ListTasksByStatus(userInput, tasks);
+                    CommandHandler.ListTasksByStatus(userInput, taskService);
                     userInput = Console.ReadLine();
                 }
                 else
